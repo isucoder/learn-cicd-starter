@@ -7,6 +7,7 @@ import (
 	"log"
 	"net/http"
 	"os"
+	"strings"
 	"time"
 
 	"github.com/go-chi/chi"
@@ -95,6 +96,8 @@ func main() {
 		ReadHeaderTimeout: time.Second * 5,
 	}
 
+	port = strings.ReplaceAll(strings.ReplaceAll(port, "\n", ""), "\r", "")
 	log.Printf("Serving on port: %s\n", port)
+
 	log.Fatal(srv.ListenAndServe())
 }
